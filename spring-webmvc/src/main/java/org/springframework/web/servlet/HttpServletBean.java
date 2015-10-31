@@ -120,7 +120,7 @@ public abstract class HttpServletBean extends HttpServlet
 
 		// Set bean properties from init parameters.
 		try {
-			PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
+			PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);//设计了一个PropertyValues接口，这点可以学习下为什么设计出这个接口出来
 			BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this);
 			ResourceLoader resourceLoader = new ServletContextResourceLoader(getServletContext());
 			bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, getEnvironment()));
