@@ -121,11 +121,11 @@ public abstract class HttpServletBean extends HttpServlet
 		// Set bean properties from init parameters.
 		try {
 			PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);//设计了一个PropertyValues接口，这点可以学习下为什么设计出这个接口出来
-			BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this);
+			BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(this); //BeanWrapper是Spring统一管理Bean属性方式
 			ResourceLoader resourceLoader = new ServletContextResourceLoader(getServletContext());
 			bw.registerCustomEditor(Resource.class, new ResourceEditor(resourceLoader, getEnvironment()));
 			initBeanWrapper(bw);
-			bw.setPropertyValues(pvs, true);
+			bw.setPropertyValues(pvs, true);  //将ServletConfig从web.xml获取的值配置给FrameworkServlet
 		}
 		catch (BeansException ex) {
 			logger.error("Failed to set bean properties on servlet '" + getServletName() + "'", ex);
